@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+            background-color: #FFB800
+            }
+             nav {
+            background-color: black; 
+            color: white; 
+            padding: 10px; 
+            position: fixed; 
+            left: 0; 
+            bottom: 0; 
+            width: 100%; 
+            height: 8%;
+        }
+        </style>    
+    </head>
+    <body>
+        <nav></nav>
+        <h1>Cadastro de Alunos!</h1>
+         
+        <form action="/cadastrarAlunos" method="post">
+        <label>Nome</label>
+        <input type="text" name="nome" style="color: white">
+        <br>
+        <br>
+        <label>CPF</label>
+        <input type="text" name="cpf" style="color: white">
+        <br>
+        <br>
+        <label>RG</label>
+        <input type = "text" name="rg" style="color: white">
+        <br>
+        <br>
+        <label>Endereço</label>
+        <input type ="text" name="endereco" style="color: white">
+        <br>
+        <br>
+        <label>Telefone</label> 
+        <input type = "text" name="telefone" style="color: white">
+        <br>
+        <br>
+        <label>Tipo de Plano</label>
+        <input type = "text" name="tipoPlano" style="color: white">
+        <br>
+        <br>
+        <label>Tipo de Pagamento</label>
+        <input type = "text" name="tipoPagamento" style="color: white"> 
+        <br>
+        <button type="submit" name="submit" value="Cadastrar Aluno">Cadastrar Aluno</button>
+        
+        
+        </form>
+
+        <ul>
+            <th:block th:each="aluno : ${alunosCadastrados}">
+            <li>
+                <strong>Nome:</strong> <span th:text="${aluno.nome}"></span><br>
+                <strong>CPF</strong> <span th:text="${aluno.cpf}"></span><br>
+                <strong>RG:</strong> <span th:text="${aluno.rg}"></span><br>
+                <strong>Endereço</strong> <span th:text="${aluno.endereço}"></span><br>
+                <strong>Telefone</strong> <span th:text="${aluno.telefone}"></span><br>
+                <strong>Tipo de Plano</strong> <span th:text="${aluno.tipoPlano}"></span><br>
+                <strong>Tipo de Pagamento</strong> <span th:text="${aluno.tipoPagamento}"></span><br>
+            </li>
+        </th:block>
+        </ul>
+         
+    </body>
+  
+
+    
+</html>

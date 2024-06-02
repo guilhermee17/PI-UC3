@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+            body {
+            background-color: #FFB800
+            }
+             nav {
+            background-color: black; 
+            color: white; 
+            padding: 10px; 
+            position: fixed; 
+            left: 0; 
+            bottom: 0; 
+            width: 100%; 
+            height: 8%;
+        }
+        </style>  
+    <body>
+        <nav>
+            
+        </nav>
+        <h1>Cadastro de Aparelho!</h1>
+        
+        <form action="/cadastrarAparelhos" method="post">
+        <label>Nome:</label>
+        <input type="text" name="nome" style="color: white">
+        <br>
+        <br>
+        <label>Quantidade:</label>
+        <input type="text" name="cpf" style="color: white">
+        <br>
+        <br>
+        <label>Custo de Compra:</label>
+        <input type = "text" name="rg" style="color: white">
+        <br>
+        <br>
+        <label>Tempo Presente:</label>
+        <input type ="text" name="endereco" style="color: white">
+        <br>
+        <br>
+        <button type="submit" name="submit" value="Cadastrar Aparelho">Cadastrar Aparelho</button>
+        
+        
+        </form>
+
+        <ul>
+            <th:block th:each="aparelho : ${aparelhosCadastrados}">
+            <li>
+                <strong>Nome:</strong> <span th:text="${aparelho.nome}"></span><br>
+                <strong>Quantidade:</strong> <span th:text="${aparelho.quantidade}"></span><br>
+                <strong>Custo de Compra:</strong> <span th:text="${aparelho.custoCompra}"></span><br>
+                <strong>Tempo Presente:</strong> <span th:text="${aparelho.tempoPresente}"></span><br>
+            </li>
+        </th:block>
+        </ul>
+         
+    </body>
+  
+
+    
+</html>
