@@ -1,14 +1,23 @@
 
 package com.api.atividade1.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Aparelhos")
 public class Aparelhos {
 
-   
+   @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private int quantidade;
     private double custoCompra;
-    private int tempoPresente;
+    private String tempoPresente;
 
     
     public Long getId() {
@@ -43,11 +52,11 @@ public class Aparelhos {
         this.custoCompra = custoCompra;
     }
 
-    public int getTempoPresente() {
+    public String getTempoPresente() {
         return tempoPresente;
     }
 
-    public void setTempoPresente(int tempoPresente) {
+    public void setTempoPresente(String tempoPresente) {
         this.tempoPresente = tempoPresente;
     }
 }

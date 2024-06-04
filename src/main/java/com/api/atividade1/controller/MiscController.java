@@ -4,58 +4,71 @@ package com.api.atividade1.controller;
 import com.api.atividade1.model.Aparelhos;
 import com.api.atividade1.model.Funcionarios;
 import com.api.atividade1.model.Alunos;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import com.api.atividade1.data.alunoRepository;
+import com.api.atividade1.data.funcionariosRepository;
+import com.api.atividade1.data.aparelhosRepository;
 
 @Controller
 public class MiscController {
 
-   private static List<Alunos> alunosCadastrados = new ArrayList<>();
-   private static List<Funcionarios> funcionariosCadastrados = new ArrayList<>();
-   private static List<Aparelhos> aparelhosCadastrados = new ArrayList<>();
+   @Autowired
+   private  alunoRepository alunoRepository;
+   
+   @Autowired
+   private  funcionariosRepository funcionariosRepository;
+   
+   @Autowired
+   private  aparelhosRepository aparelhosRepository;
     
      @GetMapping("/cadastrarAlunos")
     public String mostrarFormulárioAlunos(Model model) {
         model.addAttribute("aluno", new Alunos()); 
-        model.addAttribute("alunosCadastrados", alunosCadastrados); 
+        model.addAttribute("alunosCadastrados", alunoRepository.findAll()); 
         return "cadastrarAlunos";
     }
     
    @PostMapping("/cadastrarAlunos")
     public String processarFormulárioAlunos(@ModelAttribute Alunos aluno) {
-        alunosCadastrados.add(aluno);
+        alunoRepository.save(aluno);
         return "redirect:/cadastrarAlunos"; 
     }
    
     @GetMapping("/cadastrarFuncionarios")
     public String mostrarFormulárioFuncionarios(Model model) {
         model.addAttribute("funcionario", new Funcionarios()); 
-        model.addAttribute("funcionariosCadastrados", funcionariosCadastrados); 
+        model.addAttribute("funcionariosCadastrados", funcionariosRepository.findAll()); 
         return "cadastrarFuncionarios";
     }
 
     @PostMapping("/cadastrarFuncionarios")
     public String processarFormulárioFuncionarios(@ModelAttribute Funcionarios funcionario) {
-        funcionariosCadastrados.add(funcionario);
+        funcionariosRepository.save(funcionario);
         return "redirect:/cadastrarFuncionarios"; 
     }
     
      @GetMapping("/cadastrarAparelhos")
     public String mostrarFormulárioAparelhos(Model model) {
         model.addAttribute("aparelho", new Aparelhos()); 
-        model.addAttribute("aparelhosCadastrados", aparelhosCadastrados); 
+        model.addAttribute("aparelhosCadastrados", aparelhosRepository.findAll()); 
         return "cadastrarAparelhos";
     }
     
     @PostMapping("/cadastrarAparelhos")
-    public String processarFormulárioAparelhos(@ModelAttribute Aparelhos aparelho) {
-        aparelhosCadastrados.add(aparelho);
-        return "redirect:/aparelhoCadastrados"; 
+public String processarFormulárioAparelhos(@ModelAttribute Aparelhos aparelho, Model model) {
+    if (aparelho.getNome() == null || aparelho.getNome().isEmpty()) {
+        model.addAttribute("error", "O nome do aparelho não pode estar vazio.");
+        model.addAttribute("aparelho", aparelho);
+        model.addAttribute("aparelhosCadastrados", aparelhosRepository.findAll());
+        return "cadastrarAparelhos";
+    } else {
+        aparelhosRepository.save(aparelho);
+        return "redirect:/cadastrarAparelhos";
     }
+}
 }

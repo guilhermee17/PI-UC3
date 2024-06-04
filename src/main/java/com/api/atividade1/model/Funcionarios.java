@@ -1,7 +1,17 @@
 package com.api.atividade1.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Funcionarios")
 public class Funcionarios {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String cpf;
@@ -59,11 +69,11 @@ public class Funcionarios {
         this.telefone = telefone;
     }
 
-    public String getCarteiraTrabalho() {
+    public String getCTPS() {
         return CTPS;
     }
 
-    public void setCarteiraTrabalho(String CTPS) {
+    public void setCTPS(String CTPS) {
         this.CTPS = CTPS;
     }
 }

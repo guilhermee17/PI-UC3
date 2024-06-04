@@ -27,34 +27,35 @@
          
         <form action="/cadastrarAlunos" method="post">
         <label>Nome</label>
-        <input type="text" name="nome" style="color: white">
+        <input type="text" name="nome" >
         <br>
         <br>
         <label>CPF</label>
-        <input type="text" name="cpf" style="color: white">
+        <input type="text" name="cpf" >
         <br>
         <br>
         <label>RG</label>
-        <input type = "text" name="rg" style="color: white">
+        <input type = "text" name="rg" >
         <br>
         <br>
         <label>Endereço</label>
-        <input type ="text" name="endereco" style="color: white">
+        <input type ="text" name="endereco" >
         <br>
         <br>
         <label>Telefone</label> 
-        <input type = "text" name="telefone" style="color: white">
+        <input type = "text" name="telefone" >
         <br>
         <br>
         <label>Tipo de Plano</label>
-        <input type = "text" name="tipoPlano" style="color: white">
+        <input type = "text" name="tipoPlano" >
         <br>
         <br>
         <label>Tipo de Pagamento</label>
-        <input type = "text" name="tipoPagamento" style="color: white"> 
+        <input type = "text" name="tipoPagamento" > 
         <br>
         <button type="submit" name="submit" value="Cadastrar Aluno">Cadastrar Aluno</button>
         
+        <span style="color: red;" th:text="${error}"></span>
         
         </form>
 
@@ -64,7 +65,7 @@
                 <strong>Nome:</strong> <span th:text="${aluno.nome}"></span><br>
                 <strong>CPF</strong> <span th:text="${aluno.cpf}"></span><br>
                 <strong>RG:</strong> <span th:text="${aluno.rg}"></span><br>
-                <strong>Endereço</strong> <span th:text="${aluno.endereço}"></span><br>
+                <strong>Endereço</strong> <span th:text="${aluno.endereco}"></span><br>
                 <strong>Telefone</strong> <span th:text="${aluno.telefone}"></span><br>
                 <strong>Tipo de Plano</strong> <span th:text="${aluno.tipoPlano}"></span><br>
                 <strong>Tipo de Pagamento</strong> <span th:text="${aluno.tipoPagamento}"></span><br>
